@@ -59,6 +59,96 @@ const quizData = {
         { label: "C", text: "疯狂追逐，哪怕追到天涯海角" },
         { label: "D", text: "假装不感兴趣，其实偷偷观察" }
       ]
+    },
+    {
+      id: 7,
+      text: "原本计划好的事情突然被打乱，你会：",
+      options: [
+        { label: "A", text: "无所谓，随遇而安" },
+        { label: "B", text: "感到很慌乱，急需有人帮我重新规划" },
+        { label: "C", text: "非常生气，甚至想放弃整件事" },
+        { label: "D", text: "迅速制定备选方案，冷静应对" }
+      ]
+    },
+    {
+      id: 8,
+      text: "看到身边的人心情不好，你的第一反应是：",
+      options: [
+        { label: "A", text: "默默陪在身边，用行动安慰" },
+        { label: "B", text: "感同身受，比对方还难过" },
+        { label: "C", text: "不知道怎么面对，选择暂时回避" },
+        { label: "D", text: "讲个笑话或者带对方去玩，转移注意力" }
+      ]
+    },
+    {
+      id: 9,
+      text: "对待从未见过的新奇玩意，你通常：",
+      options: [
+        { label: "A", text: "大大咧咧地直接上去研究" },
+        { label: "B", text: "拉着同伴一起去看看" },
+        { label: "C", text: "远远观察很久，确定没危险才靠近" },
+        { label: "D", text: "完全没兴趣，觉得不如睡觉" }
+      ]
+    },
+    {
+      id: 10,
+      text: "你理想中的社交距离是：",
+      options: [
+        { label: "A", text: "只要我喜欢，我们可以随时贴贴" },
+        { label: "B", text: "希望对方能时刻回应我" },
+        { label: "C", text: "必须有属于我自己的绝对私人领地" },
+        { label: "D", text: "忽远忽近，看我心情决定" }
+      ]
+    },
+    {
+      id: 11,
+      text: "当别人对你的做法提出质疑时，你：",
+      options: [
+        { label: "A", text: "听听看，有道理就改，没道理就算" },
+        { label: "B", text: "很在意，甚至会自我怀疑很久" },
+        { label: "C", text: "觉得对方在针对我，立刻开启防御模式" },
+        { label: "D", text: "内心毫无波澜，甚至想笑" }
+      ]
+    },
+    {
+      id: 12,
+      text: "面对一堆没处理完的琐事，你会：",
+      options: [
+        { label: "A", text: "慢条斯理地一件件做完" },
+        { label: "B", text: "压力很大，想找人帮我分担" },
+        { label: "C", text: "觉得太烦了，想全部推倒重来" },
+        { label: "D", text: "先放着，等到最后一刻再爆发处理" }
+      ]
+    },
+    {
+      id: 13,
+      text: "如果你能拥有一种超能力，你希望是：",
+      options: [
+        { label: "A", text: "治愈一切的温暖力量" },
+        { label: "B", text: "能读懂所有人的心" },
+        { label: "C", text: "隐身术，可以随时消失" },
+        { label: "D", text: "瞬间移动，去任何想去的地方" }
+      ]
+    },
+    {
+      id: 14,
+      text: "在一个集体活动中，你更倾向于：",
+      options: [
+        { label: "A", text: "作为核心组织者，照顾大局" },
+        { label: "B", text: "积极参与，享受热闹的气氛" },
+        { label: "C", text: "边缘地带，做一个安静的参与者" },
+        { label: "D", text: "随性而为，想干嘛就干嘛" }
+      ]
+    },
+    {
+      id: 15,
+      text: "对于过去的一些遗憾，你的态度是：",
+      options: [
+        { label: "A", text: "那是成长的必经之路" },
+        { label: "B", text: "经常想起，还是会觉得心痛" },
+        { label: "C", text: "选择性遗忘，不想再提" },
+        { label: "D", text: "无所谓，重要的是明天吃什么" }
+      ]
     }
   ],
   catArchetypes: {

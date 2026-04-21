@@ -72,42 +72,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateResult(ans) {
-        // 1. Try exact pattern matching first
-        const patternKey = ans.map((a, i) => `${i + 1}${a}`).join('');
+        // 1. Try exact pattern matching first (only works for original 6-question patterns)
+        const patternKey = ans.slice(0, 6).map((a, i) => `${i + 1}${a}`).join('');
         if (quizData.catArchetypes[patternKey]) {
             return quizData.catArchetypes[patternKey];
         }
 
-        // 2. Logic based on dominant letters and first question
+        // 2. Advanced logic for 15 questions
         const counts = { A: 0, B: 0, C: 0, D: 0 };
         ans.forEach(a => counts[a]++);
 
-        let dominant = 'A';
-        let maxCount = 0;
-        for (const [letter, count] of Object.entries(counts)) {
-            if (count > maxCount) {
-                maxCount = count;
-                dominant = letter;
-            }
-        }
+        // Sort letters by frequency
+        const sortedLetters = Object.entries(counts)
+            .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+            .map(entry => entry[0]);
 
+        const dominant = sortedLetters[0];
+        const secondary = sortedLetters[1];
         const q1 = ans[0];
-        
-        // Mapping logic from abstract.markdown
-        // A=缅因/布偶(A1/A2)
-        // B=暹罗/三花(B3/B4)
-        // C=狮子/黑猫(C3/C4)
-        // D=森林/德文(D1/D2)
-        
-        const typeMap = {
-            'A': { 'A': '缅因巨人', 'B': '布偶猫', 'C': '无毛猫', 'D': '奶牛猫' },
-            'B': { 'A': '橘座', 'B': '暹罗猫', 'C': '三花猫', 'D': '俄罗斯蓝猫' },
-            'C': { 'A': '临清狮子猫', 'B': '黑猫', 'C': '美短', 'D': '西伯利亚森林猫' },
-            'D': { 'A': '德文卷毛猫', 'B': '折耳猫', 'C': '帕拉斯猫', 'D': '加菲猫' }
+
+        // Map based on dominant, secondary and Q1 to reach all 24+ cats
+        const extendedTypeMap = {
+            'A': { // High Stability / Leadership
+                'A': { 'A': '缅因巨人', 'B': '加菲猫', 'C': '中华狸花', 'D': '西伯利亚森林猫' },
+                'B': { 'A': '缅因巨人', 'B': '伯曼猫', 'C': '新加坡猫', 'D': '美短' },
+                'C': { 'A': '临清狮子猫', 'B': '新加坡猫', 'C': '俄罗斯蓝猫', 'D': '孟买猫' },
+                'D': { 'A': '西伯利亚森林猫', 'B': '加菲猫', 'C': '中华狸花', 'D': '新加坡猫' }
+            },
+            'B': { // High Dependency / Social
+                'A': { 'A': '布偶猫', 'B': '德文卷毛猫', 'C': '重点色布偶', 'D': '暹罗猫' },
+                'B': { 'A': '布偶猫', 'B': '暹罗猫', 'C': '重点色布偶', 'D': '德文卷毛猫' },
+                'C': { 'A': '暹罗猫', 'B': '重点色布偶', 'C': '折耳猫', 'D': '布偶猫' },
+                'D': { 'A': '德文卷毛猫', 'B': '橘座', 'C': '布偶猫', 'D': '暹罗猫' }
+            },
+            'C': { // High Introversion / Sensitivity
+                'A': { 'A': '临清狮子猫', 'B': '安哥拉猫', 'C': '无毛猫', 'D': '黑猫' },
+                'B': { 'A': '无毛猫', 'B': '折耳猫', 'C': '暹罗猫', 'D': '安哥拉猫' },
+                'C': { 'A': '无毛猫', 'B': '俄罗斯蓝猫', 'C': '临清狮子猫', 'D': '安哥拉猫' },
+                'D': { 'A': '黑猫', 'B': '无毛猫', 'C': '俄罗斯蓝猫', 'D': '折耳猫' }
+            },
+            'D': { // High Independence / Chaos
+                'A': { 'A': '中华狸花', 'B': '西伯利亚森林猫', 'C': '孟买猫', 'D': '奶牛猫' },
+                'B': { 'A': '奶牛猫', 'B': '橘座', 'C': '德文卷毛猫', 'D': '三花猫' },
+                'C': { 'A': '三花猫', 'B': '黑猫', 'C': '无毛猫', 'D': '帕拉斯猫' },
+                'D': { 'A': '奶牛猫', 'B': '狞猫', 'C': '柯尼斯卷毛猫', 'D': '阿比西尼亚猫' }
+            }
         };
 
-        // If no exact match, find by name in archetypes
-        const catName = typeMap[dominant][q1] || '缅因巨人';
+        const catName = extendedTypeMap[dominant][secondary][q1] || '缅因巨人';
         
         for (const key in quizData.catArchetypes) {
             if (quizData.catArchetypes[key].name === catName) {
