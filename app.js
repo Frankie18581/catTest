@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultScreen = document.getElementById('result-screen');
     const startBtn = document.getElementById('start-btn');
     const restartBtn = document.getElementById('restart-btn');
+    const backBtn = document.getElementById('back-btn');
     const optionsContainer = document.getElementById('options-container');
     const questionText = document.getElementById('question-text');
     const questionNumber = document.getElementById('question-number');
@@ -27,11 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         answers = [];
     });
 
+    // Back to previous question
+    backBtn.addEventListener('click', () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            answers.pop();
+            showQuestion();
+        }
+    });
+
     function showQuestion() {
         const question = quizData.questions[currentQuestionIndex];
         questionText.textContent = question.text;
         questionNumber.textContent = `第 ${currentQuestionIndex + 1}/${quizData.questions.length} 题`;
         progressBar.style.width = `${((currentQuestionIndex + 1) / quizData.questions.length) * 100}%`;
+
+        // Toggle back button visibility
+        if (currentQuestionIndex > 0) {
+            backBtn.classList.remove('hidden');
+        } else {
+            backBtn.classList.add('hidden');
+        }
 
         optionsContainer.innerHTML = '';
         question.options.forEach(option => {
